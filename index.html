@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="result" id="result">0</div>
+        <div class="calculator">
+            <button class="key" onclick="clearResult()">C</button>
+            <button class="key" onclick="appendToResult('7')">7</button>
+            <button class="key" onclick="appendToResult('8')">8</button>
+            <button class="key" onclick="appendToResult('9')">9</button>
+            <button class="key" onclick="appendToResult('+')">+</button>
+            <button class="key" onclick="appendToResult('4')">4</button>
+            <button class="key" onclick="appendToResult('5')">5</button>
+            <button class="key" onclick="appendToResult('6')">6</button>
+            <button class="key" onclick="appendToResult('-')">-</button>
+            <button class="key" onclick="appendToResult('1')">1</button>
+            <button class="key" onclick="appendToResult('2')">2</button>
+            <button class="key" onclick="appendToResult('3')">3</button>
+            <button class="key" onclick="appendToResult('*')">*</button>
+            <button class="key" onclick="appendToResult('0')">0</button>
+            <button class="key" onclick="appendToResult('.')">.</button>
+            <button class="key" onclick="calculateResult()">=</button>
+            <button class="key" onclick="appendToResult('/')">/</button>
+            <button class="key" onclick="calculateModulus()">%</button>
+            <button class="key" onclick="calculateExponent()">^</button>
+            <button class="key" onclick="calculateSquareRoot()">√</button>
+        </div>
+    </div>
+
+    <script>
+        let currentResult = "";
+
+        function appendToResult(value) {
+            currentResult += value;
+            document.getElementById("result").innerText = currentResult;
+        }
+
+        function clearResult() {
+            currentResult = "";
+            document.getElementById("result").innerText = "0";
+        }
+
+        function calculateResult() {
+            try {
+                currentResult = eval(currentResult).toString();
+                document.getElementById("result").innerText = currentResult;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error";
+            }
+        }
+
+        function calculateModulus() {
+            try {
+                currentResult = eval(currentResult + "/100").toString();
+                document.getElementById("result").innerText = currentResult;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error";
+            }
+        }
+
+        function calculateExponent() {
+            try {
+                currentResult = Math.pow(eval(currentResult), 2).toString();
+                document.getElementById("result").innerText = currentResult;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error";
+            }
+        }
+
+        function calculateSquareRoot() {
+            try {
+                currentResult = Math.sqrt(eval(currentResult)).toString();
+                document.getElementById("result").innerText = currentResult;
+            } catch (error) {
+                document.getElementById("result").innerText = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
